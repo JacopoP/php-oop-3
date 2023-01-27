@@ -136,6 +136,10 @@ class Impiegato extends Persona{
             .$this->data_di_assunzione . '<br>'
         );
     }
+
+    public function GetSalario(){
+        return $this->stipendio->GetSalario();
+    }
 }
 
 $pippo = new Stipendio(1000, false, false);
@@ -146,5 +150,6 @@ echo $pippo->GetHtml();
 echo ($pippo->GetSalario() . '<br>');
 echo $pluto->GetHtml();
 echo $paperino->GetHtml();
+echo ($paperino->GetSalario() . '<br>');
 
 echo '<br><br> ciao';
