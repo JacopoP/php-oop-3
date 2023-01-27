@@ -43,9 +43,73 @@ class Stipendio{
     );
     }
 }
+
+class Persona {
+    private $nome;
+    private $cognome;
+    private $data_di_nascita;
+    private $luogo_di_nascita;
+    private $codice_fiscale;
+
+    public function __construct($nome, $cognome, $dat_nasc, $luogo_nasc, $cod_fisc){
+        $this->SetNome($nome);
+        $this->SetCognome($cognome);
+        $this->SetDatNasc($dat_nasc);
+        $this->SetLuogoNasc($luogo_nasc);
+        $this->SetCodFisc($cod_fisc);
+    }
+
+    public function GetNome(){
+        return $this->nome;
+    }
+    public function SetNome($nome){
+        $this->nome = $nome;
+    }
+
+    public function GetCognome(){
+        return $this->cognome;
+    }
+    public function SetCognome($cognome){
+        $this->cognome = $cognome;
+    }
+
+    public function GetDatNasc(){
+        return $this->data_di_nascita;
+    }
+    public function SetDatNasc($dat_nasc){
+        $this->data_di_nascita = $dat_nasc;
+    }
+
+    public function GetLuogoNasc(){
+        return $this->luogo_di_nascita;
+    }
+    public function SetLuogoNasc($luogo_nasc){
+        $this->luogo_di_nascita = $luogo_nasc;
+    }
+
+    public function GetCodFisc(){
+        return $this->codice_fiscale;
+    }
+    public function SetCodFisc($cod_fisc){
+        $this->codice_fiscale = $cod_fisc;
+    }
+
+    public function GetHtml(){
+        return(
+            $this->nome . '<br>'
+            .$this->cognome . '<br>'
+            .$this->data_di_nascita . '<br>'
+            .$this->luogo_di_nascita . '<br>'
+            .$this->codice_fiscale . '<br>'
+        );
+    }
+}
+
 $pippo = new Stipendio(1000, false, false);
+$pluto = new Persona('pluto', 'paperone', 'un giorno', 'swh', 'ABCDEF...');
 
 echo $pippo->GetHtml();
-echo $pippo->GetSalario();
+echo ($pippo->GetSalario() . '<br>');
+echo $pluto->GetHtml();
 
 echo '<br><br> ciao';
