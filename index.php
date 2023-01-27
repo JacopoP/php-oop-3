@@ -142,14 +142,54 @@ class Impiegato extends Persona{
     }
 }
 
+class Capo extends Persona{
+    private $dividendo;
+    private $bonus;
+
+    public function __construct($nome, $cognome, $dat_nasc, $luogo_nasc, $cod_fisc, $dividendo, $bonus){
+        parent:: __construct($nome, $cognome, $dat_nasc, $luogo_nasc, $cod_fisc);
+        $this->SetDividendo($dividendo);
+        $this->SetBonus($bonus);
+    }
+
+    public function GetDividendo(){
+        return $this->dividendo;
+    }
+    public function SetDividendo($dividendo){
+        $this->dividendo = $dividendo;
+    }
+
+    public function GetBonus(){
+        return $this->bonus;
+    }
+    public function SetBonus($bonus){
+        $this->bonus = $bonus;
+    }
+
+    public function GetHtml(){
+        return (
+            parent:: GetHtml()
+            .$this->dividendo .'<br>'
+            .$this->bonus . '<br>'
+        );
+    }
+
+    public function GetSalario(){
+        return $this->dividendo * 12 + $this->bonus;
+    }
+}
+
 $pippo = new Stipendio(1000, false, false);
 $pluto = new Persona('pluto', 'paperone', 'un giorno', 'swh', 'ABCDEF...');
 $paperino = new Impiegato ('paperino', 'pizza', 'smt', 'BG', 'EFGH...', $pippo, 'ieri');
+$paperone = new Capo ('paperino', 'pizza', 'smt', 'BG', 'EFGH...', 10000, 20000);
 
 echo $pippo->GetHtml();
 echo ($pippo->GetSalario() . '<br>');
 echo $pluto->GetHtml();
 echo $paperino->GetHtml();
 echo ($paperino->GetSalario() . '<br>');
+echo $paperone->GetHtml();
+echo $paperone->GetSalario();
 
 echo '<br><br> ciao';
