@@ -105,11 +105,46 @@ class Persona {
     }
 }
 
+class Impiegato extends Persona{
+    private $stipendio;
+    private $data_di_assunzione;
+
+    public function __construct($nome, $cognome, $dat_nasc, $luogo_nasc, $cod_fisc, Stipendio $stipendio, $data_ass){
+        parent:: __construct($nome, $cognome, $dat_nasc, $luogo_nasc, $cod_fisc);
+        $this->SetStipendio($stipendio);
+        $this->SetDataAss($data_ass);
+    }
+
+    public function GetStipendio(){
+        return $this->stipendio;
+    }
+    public function SetStipendio(Stipendio $stipendio){
+        $this->stipendio = $stipendio;
+    }
+
+    public function GetDataAss(){
+        return $this->data_di_assunzione;
+    }
+    public function SetDataAss($data_ass){
+        $this->data_di_assunzione = $data_ass;
+    }
+
+    public function GetHtml(){
+        return (
+            parent:: GetHtml()
+            .$this->stipendio->GetHtml()
+            .$this->data_di_assunzione . '<br>'
+        );
+    }
+}
+
 $pippo = new Stipendio(1000, false, false);
 $pluto = new Persona('pluto', 'paperone', 'un giorno', 'swh', 'ABCDEF...');
+$paperino = new Impiegato ('paperino', 'pizza', 'smt', 'BG', 'EFGH...', $pippo, 'ieri');
 
 echo $pippo->GetHtml();
 echo ($pippo->GetSalario() . '<br>');
 echo $pluto->GetHtml();
+echo $paperino->GetHtml();
 
 echo '<br><br> ciao';
